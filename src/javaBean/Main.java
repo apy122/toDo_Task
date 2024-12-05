@@ -1,11 +1,9 @@
 package javaBean;
 
-import java.util.Scanner;
-
 public class Main {
 	public static void main (String[] args) {
-		Menu();
-
+		JavaCode javaCode= new JavaCode();
+		javaCode.Menu();
 	}
 
 }
