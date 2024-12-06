@@ -1,109 +1,93 @@
 package javaBean;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class JavaCode {
-	//Atributes
-	private ArrayList<String> tasks;
-	private Scanner scanner;
-	private int option;
-	private ArrayList<String> menu;
-	
-	//builders
-	public JavaCode() {
-		super();
-	}
+    // Atributos
+    private ArrayList<String> tasks;
+    private int option;
+    private ArrayList<String> menu;
 
-	public JavaCode(ArrayList<String> tasks, Scanner scanner, int option, ArrayList<String> menu) {
-		super();
-		this.tasks = new ArrayList<>();
-		this.scanner =new Scanner(System.in);
-		this.option = -1;
-		this.menu = new ArrayList<>();;
-	}
-	
-	//seters and getters
+    // Constructor
+    public JavaCode() {
+        this.tasks = new ArrayList<>();
+        this.option = -1;
+        this.menu = new ArrayList<>();
+        createMenu();
+    }
 
-	public ArrayList<String> getTasks() {
-		return tasks;
-	}
+    // Crear el menú
+    private void createMenu() {
+        menu.add("1. Mostrar lista de tareas");
+        menu.add("2. Agregar tarea");
+        menu.add("3. Marcar tarea como hecha");
+        menu.add("4. Salir");
+    }
 
-	public void setTasks(ArrayList<String> tasks) {
-		this.tasks = tasks;
-	}
+    // Mostrar el menú y gestionar opciones
+    public void showMenu() {
+        Scanner scanner = new Scanner(System.in);
+        while (option != 4) {
+            System.out.println("\n==== Menú ====");
+            for (String menuItem : menu) {
+                System.out.println(menuItem);
+            }
+            System.out.print("Selecciona una opción: ");
+            if (scanner.hasNextInt()) {
+                option = scanner.nextInt();
+                scanner.nextLine(); // Limpiar el buffer
+                handleOption(option);
+            } else {
+                System.out.println("Por favor, introduce un número válido.");
+                scanner.nextLine(); // Limpiar el buffer
+            }
+        }
+        scanner.close();
+        System.out.println("¡Hasta luego!");
+    }
 
-	public Scanner getScanner() {
-		return scanner;
-	}
+    // Manejar las opciones del menú
+    private void handleOption(int option) {
+        switch (option) {
+            case 1:
+                showTasks();
+                break;
+            case 2:
+                addTask();
+                break;
+            case 3:
+                markTaskAsDone();
+                break;
+            case 4:
+                System.out.println("Saliendo del programa...");
+                break;
+            default:
+                System.out.println("Opción no válida. Inténtalo de nuevo.");
+        }
+    }
 
-	public void setScanner(Scanner scanner) {
-		this.scanner = scanner;
-	}
+    // Mostrar lista de tareas
+    private void showTasks() {
+     
+    }
 
-	public int getOption() {
-		return option;
-	}
+    // Agregar una tarea
+    private void addTask() {
+    	
+    }
 
-	public void setOption(int option) {
-		this.option = option;
-	}
+    // Marcar una tarea como hecha
+    private void markTaskAsDone() {
+       
+    }
 
-	public ArrayList<String> getMenu() {
-		return menu;
-	}
+    public static void main(String[] args) {
+        JavaCode app = new JavaCode();
+        app.showMenu();
+    }
+}
 
-	public void setMenu(ArrayList<String> menu) {
-		this.menu = menu;
-	}
-	
-	//Menu
-	public void Menu(){
-			
-			//option menu
-			menu.add("Menu:\n");
-			menu.add("1. Task List\n");
-			menu.add("2. Add Task\n");
-			menu.add("3. Task done\n");
-			menu.add("4. Delete Task\n");
-		}
-		public void showMenu() {
-			while(option!=4) {
-				System.out.println("\n====Menu====\n");
-				for(String menu:menu) {
-					System.out.println(menu);
-				}
-				System.out.println("Select Option: ");
-				if (scanner.hasNextInt()) {
-	                option = scanner.nextInt();
-	                scanner.nextLine();
-	                setOption(option);
-	            } else {
-	                System.out.println("Por favor, introduce un número válido.");
-	                scanner.nextLine();
-	            }
-			}
-			
-			if (scanner.hasNextInt()) {
-				System.out.println("\nIngrese opcion\n");
-			    option= this.scanner.nextInt();
-	            scanner.nextLine();
-	          //options
-				switch (option) {
-				case 1:
-					//taskList();
-					break;
-				case 2:
-					//addTask();
-					break;
-				case 3:
-					//taskDone();
-					break;
-				}
-	        }else{
-	            System.out.println("Por favor, introduce un número válido.");
-	            scanner.nextLine();
-	            continue;
-	        }
 
 	//See Task
 	//public void taskList() {
@@ -124,8 +108,4 @@ public class JavaCode {
 	//public nexLine taskdelete() {
 	//	return ;
 	//}
-
-
 	
-	
-}
