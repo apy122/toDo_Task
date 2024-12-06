@@ -3,41 +3,100 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class JavaCode {
+	//Atributes
 	private ArrayList<String> tasks;
 	private Scanner scanner;
 	private int option;
-
-	public JavaCode(){
+	private ArrayList<String> menu;
+	
+	//builders
+	public JavaCode() {
 		super();
-		this.tasks = new ArrayList<>();;
-		this.scanner = new Scanner(System.in);
-		this.option = -1;
 	}
+
+	public JavaCode(ArrayList<String> tasks, Scanner scanner, int option, ArrayList<String> menu) {
+		super();
+		this.tasks = new ArrayList<>();
+		this.scanner =new Scanner(System.in);
+		this.option = -1;
+		this.menu = new ArrayList<>();;
+	}
+	
+	//seters and getters
+
+	public ArrayList<String> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(ArrayList<String> tasks) {
+		this.tasks = tasks;
+	}
+
+	public Scanner getScanner() {
+		return scanner;
+	}
+
+	public void setScanner(Scanner scanner) {
+		this.scanner = scanner;
+	}
+
+	public int getOption() {
+		return option;
+	}
+
+	public void setOption(int option) {
+		this.option = option;
+	}
+
+	public ArrayList<String> getMenu() {
+		return menu;
+	}
+
+	public void setMenu(ArrayList<String> menu) {
+		this.menu = menu;
+	}
+	
 	//Menu
 	public void Menu(){
-		while(option!=4) {
-			System.out.println("Menu:\n");
-			System.out.println("1. Task List\n");
-			System.out.println("2. Add Task\n");
-			System.out.println("3. Task done\n");
-			System.out.println("4. Delete Task\n");
 			
-			option=-1; 
-			//future options
+			//option menu
+			menu.add("Menu:\n");
+			menu.add("1. Task List\n");
+			menu.add("2. Add Task\n");
+			menu.add("3. Task done\n");
+			menu.add("4. Delete Task\n");
+		}
+		public void showMenu() {
+			while(option!=4) {
+				System.out.println("\n====Menu====\n");
+				for(String menu:menu) {
+					System.out.println(menu);
+				}
+				System.out.println("Select Option: ");
+				if (scanner.hasNextInt()) {
+	                option = scanner.nextInt();
+	                scanner.nextLine();
+	                setOption(option);
+	            } else {
+	                System.out.println("Por favor, introduce un número válido.");
+	                scanner.nextLine();
+	            }
+			}
+			
 			if (scanner.hasNextInt()) {
 				System.out.println("\nIngrese opcion\n");
-				int option= this.scanner.nextInt();
+			    option= this.scanner.nextInt();
 	            scanner.nextLine();
 	          //options
 				switch (option) {
 				case 1:
-					taskList();
+					//taskList();
 					break;
 				case 2:
-					addTask();
+					//addTask();
 					break;
 				case 3:
-					taskDone();
+					//taskDone();
 					break;
 				}
 	        }else{
@@ -45,34 +104,28 @@ public class JavaCode {
 	            scanner.nextLine();
 	            continue;
 	        }
-		}
-	}
 
 	//See Task
-	public void taskList() {
+	//public void taskList() {
 		
-	}
+	//}
 	
 	//Add Task
-	public void addTask() {
+	//public void addTask() {
 		
-	}
+	//}
 	
 	//task Done
-	public void taskDone() {
+	//public void taskDone() {
 		
-	}
+	//}
 	
 	//Task delete
-	public void taskdelete() {
-		
-	}
+	//public nexLine taskdelete() {
+	//	return ;
+	//}
 
 
-	@Override
-	public String toString() {
-		return "testToDo [tasks=" + tasks + ", scanner=" + scanner + "]";
-	}
 	
 	
 }
