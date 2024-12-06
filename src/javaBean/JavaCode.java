@@ -8,26 +8,31 @@ public class JavaCode {
     private ArrayList<String> tasks;
     private int option;
     private ArrayList<String> menu;
+    private Scanner scanner;
+    private int i;
 
     // Constructor
     public JavaCode() {
         this.tasks = new ArrayList<>();
         this.option = -1;
         this.menu = new ArrayList<>();
+        this.scanner= new Scanner(System.in);
+        this.i=0;
+        
         createMenu();
+        showMenu();
     }
 
     // Crear el menú
     private void createMenu() {
         menu.add("1. Mostrar lista de tareas");
         menu.add("2. Agregar tarea");
-        menu.add("3. Marcar tarea como hecha");
+        menu.add("3. Eliminar tarea");
         menu.add("4. Salir");
     }
 
     // Mostrar el menú y gestionar opciones
     public void showMenu() {
-        Scanner scanner = new Scanner(System.in);
         while (option != 4) {
             System.out.println("\n==== Menú ====");
             for (String menuItem : menu) {
@@ -36,15 +41,14 @@ public class JavaCode {
             System.out.print("Selecciona una opción: ");
             if (scanner.hasNextInt()) {
                 option = scanner.nextInt();
-                scanner.nextLine(); // Limpiar el buffer
+                scanner.nextLine(); 
                 handleOption(option);
             } else {
                 System.out.println("Por favor, introduce un número válido.");
-                scanner.nextLine(); // Limpiar el buffer
+                scanner.nextLine();
             }
         }
         scanner.close();
-        System.out.println("¡Hasta luego!");
     }
 
     // Manejar las opciones del menú
@@ -67,45 +71,35 @@ public class JavaCode {
         }
     }
 
-    // Mostrar lista de tareas
     private void showTasks() {
-     
+     if(this.tasks.isEmpty()){
+    	 System.out.println("Showtask empty");
+     }else {
+    	 for( i=0; i< tasks.size();i++) {
+    		 System.out.println((i+1)+ tasks.get(i));
+    	 }
+     }
+     for(int i=0;i< tasks.size(); i++) {
+    	 System.out.println(i+1);
+     }
     }
 
     // Agregar una tarea
-    private void addTask() {
-    	
+    private void addTask () {
+    	System.out.println("Write task to Do: ");
+    	String task= scanner.nextLine();
+    	scanner.nextLine();
+    	tasks.add(task);
     }
 
-    // Marcar una tarea como hecha
+    // Eliminar tarea
     private void markTaskAsDone() {
-       
+       System.out.println("Number of task to remove: ");
+       int i= scanner.nextInt();
+       tasks.remove(i);
     }
 
-    public static void main(String[] args) {
-        JavaCode app = new JavaCode();
-        app.showMenu();
-    }
 }
 
 
-	//See Task
-	//public void taskList() {
-		
-	//}
-	
-	//Add Task
-	//public void addTask() {
-		
-	//}
-	
-	//task Done
-	//public void taskDone() {
-		
-	//}
-	
-	//Task delete
-	//public nexLine taskdelete() {
-	//	return ;
-	//}
 	
