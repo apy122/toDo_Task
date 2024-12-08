@@ -10,6 +10,7 @@ public class JavaCode {
     private Scanner scanner;
     private Task task;
     private int index;
+    private boolean founded;
 
     // Constructor
     public JavaCode() {
@@ -18,68 +19,98 @@ public class JavaCode {
         this.menu = new ArrayList<>();
         this.scanner= new Scanner(System.in);
         this.task=new Task();
-        index= 1;
+        this.index= 1;
+        this.founded=false;
         
         createMenu();
         showMenu();
     }
     
-public ArrayList<Task> getTasks() {
+    //seter and getters
+	public ArrayList<Task> getTasks() {
 		return tasks;
 	}
+
 
 	public void setTasks(ArrayList<Task> tasks) {
 		this.tasks = tasks;
 	}
 
+
 	public int getOption() {
 		return option;
 	}
+
 
 	public void setOption(int option) {
 		this.option = option;
 	}
 
+
 	public ArrayList<String> getMenu() {
 		return menu;
 	}
+
 
 	public void setMenu(ArrayList<String> menu) {
 		this.menu = menu;
 	}
 
+
 	public Scanner getScanner() {
 		return scanner;
 	}
+
 
 	public void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}
 
+
 	public Task getTask() {
 		return task;
 	}
+
 
 	public void setTask(Task task) {
 		this.task = task;
 	}
 
+
 	public int getIndex() {
 		return index;
 	}
+
 
 	public void setIndex(int index) {
 		this.index = index;
 	}
 
-	//clase
-    // Crear el menú
+
+	public boolean isFounded() {
+		return founded;
+	}
+
+
+	public void setFounded(boolean founded) {
+		this.founded = founded;
+	}
+
+	//modify toString
+    @Override
+	public String toString() {
+		return "JavaCode [tasks=" + tasks + ", option=" + option + ", menu=" + menu + ", scanner=" + scanner + ", task="
+				+ task + ", index=" + index + ", founded=" + founded + "]";
+	}
+
+	// Crear el menú
     private void createMenu() {
         menu.add("1. Mostrar lista de tareas");
         menu.add("2. Agregar tarea");
         menu.add("3. Eliminar tarea");
         menu.add("4. Mark task done");
-        menu.add("5. Salir");
+        menu.add("5. Buscar tarea");
+        menu.add("6. Salir");
     }
 
     // Mostrar el menú y gestionar opciones
@@ -116,8 +147,9 @@ public ArrayList<Task> getTasks() {
                 break;
             case 4:
             	taskMade();
-
             case 5:
+            	searchTask();
+            case 6:
                 System.out.println("Saliendo del programa...");
                 break;
             default:
@@ -135,6 +167,9 @@ public ArrayList<Task> getTasks() {
             }
         }
     }
+    
+    //overwrite
+    
     
 
     // Agregar una tarea
@@ -169,13 +204,30 @@ public ArrayList<Task> getTasks() {
     }
     public void taskMade() {
     	System.out.println("Marca Tarea terminada(por numero): ");
-    	index= scanner.nextInt();
+    	int y= scanner.nextInt();
     	if(index>0 && index<tasks.size()) {
-    		tasks.get(index).timeOutTask();
-    		System.out.println("La tarea con ID " + index + " ha sido marcada como terminada.");
+    		for(y=0;y<tasks.size();y ++) {
+    			tasks.get(index).timeOutTask();
+        		System.out.println("La tarea con ID " + index + " ha sido marcada como terminada.");	
+    		}
+    		
     	}else {
     		System.out.println("Inserte una opcion Valida");
     	}
-		
     }
+    
+    //Search Task
+    public void searchTask() {
+    	System.out.println("Marca el id de la tarea que quieres buscar");
+    	int y= scanner.nextInt();
+    	for(Task task: tasks) {
+    		if(index== y) {
+    			System.out.println("Tarea encontrada"+ tasks);
+    			founded=true;	
+    		}else {
+    			System.out.println("Tarea no encontrada");
+    			founded=false;
+    		}
+    	}
+	}
    }
