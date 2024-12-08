@@ -1,15 +1,15 @@
 package javaBean;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class JavaCode {
-    // Atributos
+    // Atributo
     private ArrayList<Task> tasks;
     private int option;
     private ArrayList<String> menu;
     private Scanner scanner;
     private Task task;
+    private int index;
 
     // Constructor
     public JavaCode() {
@@ -18,11 +18,61 @@ public class JavaCode {
         this.menu = new ArrayList<>();
         this.scanner= new Scanner(System.in);
         this.task=new Task();
+        index= 1;
         
         createMenu();
         showMenu();
     }
-//clase
+    
+public ArrayList<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(ArrayList<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public int getOption() {
+		return option;
+	}
+
+	public void setOption(int option) {
+		this.option = option;
+	}
+
+	public ArrayList<String> getMenu() {
+		return menu;
+	}
+
+	public void setMenu(ArrayList<String> menu) {
+		this.menu = menu;
+	}
+
+	public Scanner getScanner() {
+		return scanner;
+	}
+
+	public void setScanner(Scanner scanner) {
+		this.scanner = scanner;
+	}
+
+	public Task getTask() {
+		return task;
+	}
+
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	//clase
     // Crear el menú
     private void createMenu() {
         menu.add("1. Mostrar lista de tareas");
@@ -80,8 +130,8 @@ public class JavaCode {
             System.out.println("La lista de tareas está vacía.");
         } else {
             System.out.println("ID   Nombre   Fecha   Vencida?");
-            for (Task task : tasks) {
-                System.out.println(task.getIdTarea() + " " + task.getNombre() + " " + task.getFechaVencimiento() + " " + task.isEstaVencida());
+            for (Task task: tasks) {
+                System.out.println(task.getIdTarea()+" "+task.getNombre()+" "+task.getFechaVencimiento()+ " "+ task.isEstaVencida());
             }
         }
     }
@@ -93,9 +143,11 @@ public class JavaCode {
     	String taskName= scanner.next();
     	System.out.println("Fecha de vencimiento: ");
     	String fechaVencimiento= scanner.next();
-    	int i=1;
-    	tasks.add(new Task(taskName, i, fechaVencimiento, false));
-    	i++;
+    	tasks.add(new Task(taskName, index, fechaVencimiento, false));
+    	index++;
+    	task.updateIdTarea();
+    	
+    	
     			
     }
     
@@ -103,7 +155,7 @@ public class JavaCode {
     private void removeTask() {
         System.out.println("Número de tarea a eliminar: ");
         if (scanner.hasNextInt()) {
-            int index = scanner.nextInt();
+            index = scanner.nextInt();
             if (index >= 0 && index < tasks.size()) {
                 tasks.remove(index);
                 System.out.println("Tarea eliminada correctamente.");
@@ -117,17 +169,12 @@ public class JavaCode {
     }
     public void taskMade() {
     	System.out.println("Marca Tarea terminada(por numero): ");
-    	if(scanner.hasNextInt()) {
-    		int index= scanner.nextInt();
-    		if(index>0 && index<tasks.size()) {
-    			tasks.get(index).timeOutTask();
-    			System.out.println("La tarea con ID " + index + " ha sido marcada como terminada.");
-    		}else {
-    			System.out.println("Inserte una opcion Valida");
-    		}
-    	}else{
-    		System.out.println("Porfavor inserte una opcion valida!!");
-    		scanner.nextLine();
+    	index= scanner.nextInt();
+    	if(index>0 && index<tasks.size()) {
+    		tasks.get(index).timeOutTask();
+    		System.out.println("La tarea con ID " + index + " ha sido marcada como terminada.");
+    	}else {
+    		System.out.println("Inserte una opcion Valida");
     	}
 		
     }

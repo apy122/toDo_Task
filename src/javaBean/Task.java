@@ -1,5 +1,6 @@
 package javaBean;
 import java.util.Scanner;
+import java.util.concurrent.StructuredTaskScope;
 public class Task {
 	private String nombre;
 	private int idTarea;
@@ -13,7 +14,7 @@ public class Task {
 	public Task(String nombre, int idTarea, String fechaVencimiento, boolean estaVencida) {
 		super();
 		this.nombre = nombre;
-		this.idTarea = idTarea;
+		this.idTarea=idTarea;
 		this.fechaVencimiento = fechaVencimiento;
 		this.estaVencida = estaVencida;
 		this.scanner=new Scanner(System.in);
@@ -29,9 +30,6 @@ public class Task {
 	public int getIdTarea() {
 		return idTarea;
 	}
-	public void setIdTarea(int idTarea) {
-		this.idTarea = idTarea;
-	}
 	public String getFechaVencimiento() {
 		return fechaVencimiento;
 	}
@@ -43,6 +41,12 @@ public class Task {
 	}
 	public void setEstaVencida(boolean estaVencida) {
 		this.estaVencida = estaVencida;
+	}
+	public void updateIdTarea() {
+		
+		for (idTarea=1; idTarea<100 ;idTarea++) {
+			idTarea++;
+		}
 	}
 	public void timeOutTask() {
 		this.estaVencida=true;
